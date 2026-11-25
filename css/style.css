@@ -55,22 +55,101 @@
   --white: #1B1510;
   --card-bg: #1B1510;
   --border: rgba(244, 181, 42, 0.22);
-  --shadow-sm: 0 2px 14px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.75);
-  --shadow-xl: 0 40px 100px rgba(0, 0, 0, 0.85);
+  --shadow-sm: 0 2px 14px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.85);
+  --shadow-xl: 0 40px 100px rgba(0, 0, 0, 0.95);
   --shadow-amber: 0 20px 60px rgba(244, 181, 42, 0.25);
 }
 
+[data-theme="dark"] body {
+  background-color: #120E0A !important;
+  color: #FFF6E5 !important;
+}
+
+[data-theme="dark"] #navbar {
+  background: rgba(18, 14, 10, 0.92);
+}
+
 [data-theme="dark"] #navbar.scrolled {
-  background: rgba(18, 14, 10, 0.95);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background: rgba(18, 14, 10, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(244, 181, 42, 0.15);
+}
+
+[data-theme="dark"] .nav-links a {
+  color: #D4C3B3;
+}
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: #FFF6E5;
+}
+
+[data-theme="dark"] .nav-logo {
+  color: #FFF6E5;
+}
+
+[data-theme="dark"] .hamburger span {
+  background: #FFF6E5;
+}
+
+[data-theme="dark"] .btn-nav-search {
+  color: #D4C3B3;
+}
+
+[data-theme="dark"] #hero {
+  background: #120E0A !important;
+}
+
+[data-theme="dark"] #products {
+  background: #120E0A !important;
+}
+
+[data-theme="dark"] #experience {
+  background: #18120D !important;
+}
+
+[data-theme="dark"] #how-it-works {
+  background: #120E0A !important;
+}
+
+[data-theme="dark"] #brand-story {
+  background: #120E0A !important;
+}
+
+[data-theme="dark"] #stats {
+  background: #18120D !important;
+}
+
+[data-theme="dark"] #testimonials {
+  background: #120E0A !important;
+}
+
+[data-theme="dark"] #footer {
+  background: #0A0705 !important;
+  border-top: 1px solid rgba(244, 181, 42, 0.15);
+}
+
+[data-theme="dark"] .page-hero {
+  background: linear-gradient(to bottom, #1A140F, #120E0A) !important;
+}
+
+[data-theme="dark"] .about-hero {
+  background: linear-gradient(to bottom, #1A140F, #120E0A) !important;
+}
+
+[data-theme="dark"] .about-mission-bg {
+  background: #1C1510 !important;
+}
+
+[data-theme="dark"] #our-values {
+  background: #18120D !important;
 }
 
 [data-theme="dark"] .product-card {
   background: #1B1510;
   border-color: rgba(244, 181, 42, 0.18);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .product-img-wrap {
@@ -128,8 +207,27 @@
 [data-theme="dark"] .section-title,
 [data-theme="dark"] .product-name,
 [data-theme="dark"] .diagram-title,
-[data-theme="dark"] .brand-main-title {
-  color: #FFF6E5;
+[data-theme="dark"] .brand-main-title,
+[data-theme="dark"] .stat-num,
+[data-theme="dark"] .process-step-title,
+[data-theme="dark"] .testimonial-name {
+  color: #FFF6E5 !important;
+}
+
+[data-theme="dark"] .product-price {
+  color: #F4B52A !important;
+}
+
+[data-theme="dark"] .product-desc,
+[data-theme="dark"] .process-step-desc,
+[data-theme="dark"] .hero-desc,
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] .testimonial-text {
+  color: #B5A292 !important;
+}
+
+[data-theme="dark"] .flow-node-label {
+  color: #D4C3B3 !important;
 }
 
 [data-theme="dark"] .float-card {
