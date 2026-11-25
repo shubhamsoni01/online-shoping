@@ -167,6 +167,7 @@
     <span class="admin-badge">Admin Dashboard · INR (₹)</span>
   </div>
   <div class="admin-topnav-right">
+    <button class="btn-theme-toggle" onclick="toggleAdminTheme()" title="Switch theme" aria-label="Toggle theme">🌙</button>
     <div class="admin-search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9E8572" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" placeholder="Search orders, INR..." aria-label="Search">
@@ -386,6 +387,25 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  function toggleAdminTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('ss-brewcart-theme', next);
+    const btn = document.querySelector('.btn-theme-toggle');
+    if (btn) btn.innerHTML = next === 'dark' ? '☀️' : '🌙';
+    showToast(next === 'dark' ? 'Luxury Dark Mode Active 🌙' : 'Light Mode Active ☀️', '🎨');
+  }
+
+  (function() {
+    const saved = localStorage.getItem('ss-brewcart-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.btn-theme-toggle');
+      if (btn) btn.innerHTML = saved === 'dark' ? '☀️' : '🌙';
+    });
+  })();
+
   function showToast(message, icon) {
     const existing = document.querySelector('.toast');
     if (existing) { existing.remove(); }

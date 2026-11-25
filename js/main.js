@@ -802,9 +802,44 @@ function initNewsletter() {
 }
 
 // ==========================================
+// THEME TOGGLE (Luxury Dark & Light Mode)
+// ==========================================
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const toggleBtns = document.querySelectorAll('.btn-theme-toggle');
+  toggleBtns.forEach(btn => {
+    btn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+    btn.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Luxury Dark Mode');
+  });
+}
+
+function initThemeToggle() {
+  const savedTheme = localStorage.getItem('ss-brewcart-theme') || 'dark';
+  applyTheme(savedTheme);
+
+  const toggleBtns = document.querySelectorAll('.btn-theme-toggle');
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem('ss-brewcart-theme', nextTheme);
+      showToast(nextTheme === 'dark' ? 'Luxury Dark Mode Activated 🌙' : 'Warm Cream Light Mode Activated ☀️', '🎨');
+    });
+  });
+}
+
+// Immediate theme execution to prevent flash
+(function() {
+  const current = localStorage.getItem('ss-brewcart-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', current);
+})();
+
+// ==========================================
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initLoadingScreen();
   initNavbar();
   initScrollTop();

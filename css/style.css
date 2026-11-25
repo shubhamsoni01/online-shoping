@@ -42,6 +42,138 @@
   --nav-height: 80px;
 }
 
+/* ============================================
+   LUXURY DARK THEME - OBSIDIAN & AMBER GOLD
+   ============================================ */
+[data-theme="dark"] {
+  --bg-cream: #120E0A;
+  --bg-beige: #1A140F;
+  --bg-light: #231B15;
+  --text-dark: #FFF6E5;
+  --text-mid: #D9C5B2;
+  --text-muted: #A38F7E;
+  --white: #1B1510;
+  --card-bg: #1B1510;
+  --border: rgba(244, 181, 42, 0.22);
+  --shadow-sm: 0 2px 14px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.75);
+  --shadow-xl: 0 40px 100px rgba(0, 0, 0, 0.85);
+  --shadow-amber: 0 20px 60px rgba(244, 181, 42, 0.25);
+}
+
+[data-theme="dark"] #navbar.scrolled {
+  background: rgba(18, 14, 10, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .product-card {
+  background: #1B1510;
+  border-color: rgba(244, 181, 42, 0.18);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .product-img-wrap {
+  background: linear-gradient(135deg, #241C15, #1B140E);
+}
+
+[data-theme="dark"] .diagram-card {
+  background: #1B1510;
+  border-color: rgba(244, 181, 42, 0.18);
+}
+
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .value-card,
+[data-theme="dark"] .collection-sidebar,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] #cart-drawer,
+[data-theme="dark"] .login-modal-content,
+[data-theme="dark"] .founder-card {
+  background: #1C1510;
+  border-color: rgba(244, 181, 42, 0.2);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .search-wrap input,
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .collection-sort {
+  background: #241C16;
+  color: #FFF6E5;
+  border-color: rgba(244, 181, 42, 0.25);
+}
+
+[data-theme="dark"] .search-wrap input::placeholder {
+  color: #8C7A6D;
+}
+
+[data-theme="dark"] .cart-item {
+  background: #241C16;
+}
+
+[data-theme="dark"] .btn-outline {
+  border-color: rgba(244, 181, 42, 0.4);
+  color: #FFF6E5;
+}
+[data-theme="dark"] .btn-outline:hover {
+  background: #F4B52A;
+  color: #120E0A;
+  border-color: #F4B52A;
+}
+
+[data-theme="dark"] .title-outline {
+  -webkit-text-stroke: 2px #FFF6E5;
+}
+
+[data-theme="dark"] .hero-title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .product-name,
+[data-theme="dark"] .diagram-title,
+[data-theme="dark"] .brand-main-title {
+  color: #FFF6E5;
+}
+
+[data-theme="dark"] .float-card {
+  background: #1C1510;
+  border-color: rgba(244, 181, 42, 0.25);
+  color: #FFF6E5;
+}
+
+[data-theme="dark"] .mobile-nav {
+  background: #120E0A;
+}
+[data-theme="dark"] .mobile-nav a {
+  color: #FFF6E5;
+}
+
+/* Theme Toggle Button */
+.btn-theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 181, 42, 0.12);
+  border: 1.5px solid rgba(244, 181, 42, 0.3);
+  color: var(--primary-dark);
+  transition: var(--transition-spring);
+  cursor: pointer;
+  position: relative;
+  font-size: 1.15rem;
+}
+
+.btn-theme-toggle:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: scale(1.1) rotate(15deg);
+}
+
+[data-theme="dark"] .btn-theme-toggle {
+  background: rgba(244, 181, 42, 0.2);
+  border-color: rgba(244, 181, 42, 0.5);
+  color: #F4B52A;
+}
+
 /* ---- RESET & BASE ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
