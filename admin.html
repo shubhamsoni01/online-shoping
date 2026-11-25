@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – SS BREWCART by Sumit Sinha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    :root {
+      --admin-sidebar: 260px;
+      --admin-topnav: 70px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F5F3EF;
+      color: #30251C;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .admin-topnav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--admin-topnav);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244,181,42,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; z-index: 100;
+      box-shadow: 0 2px 20px rgba(48,37,28,0.06);
+    }
+    .admin-topnav-left { display: flex; align-items: center; gap: 20px; }
+    .ss-monogram-small {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, #F4B52A, #EFA34A);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-weight: 900;
+      font-size: 1rem; color: #30251C;
+    }
+    .admin-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 900; color: #30251C;
+    }
+    .admin-logo span { color: #F4B52A; }
+    .admin-badge {
+      background: rgba(244,181,42,0.15); border: 1px solid rgba(244,181,42,0.3);
+      border-radius: 999px; padding: 4px 12px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #D99A14;
+    }
+    .admin-topnav-right { display: flex; align-items: center; gap: 16px; }
+    .admin-search {
+      display: flex; align-items: center; gap: 8px;
+      background: #F5F3EF; border: 1.5px solid rgba(244,181,42,0.2);
+      border-radius: 999px; padding: 8px 18px;
+    }
+    .admin-search input {
+      border: none; background: transparent; font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; color: #30251C; outline: none; width: 180px;
+    }
+    .admin-notification-btn {
+      position: relative; width: 40px; height: 40px; border-radius: 50%;
+      background: #F5F3EF; border: 1.5px solid rgba(244,181,42,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: #5C4033; cursor: pointer;
+    }
+    .notif-badge {
+      position: absolute; top: -3px; right: -3px;
+      width: 16px; height: 16px; background: #E05252;
+      border-radius: 50%; border: 2px solid #fff;
+      font-size: 0.6rem; font-weight: 700; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .admin-user-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: #F5F3EF; border: 1.5px solid rgba(244,181,42,0.15);
+      border-radius: 999px; padding: 6px 16px 6px 6px; cursor: pointer;
+    }
+    .admin-user-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #F4B52A, #EFA34A);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #fff; font-size: 0.8rem;
+    }
+
+    .admin-layout { display: flex; padding-top: var(--admin-topnav); min-height: 100vh; }
+    .admin-sidebar {
+      width: var(--admin-sidebar); background: #fff;
+      border-right: 1px solid rgba(244,181,42,0.12);
+      position: fixed; top: var(--admin-topnav); left: 0; bottom: 0;
+      overflow-y: auto; padding: 24px 0; display: flex; flex-direction: column;
+    }
+    .sidebar-section-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #9E8572; padding: 0 24px;
+      margin-bottom: 8px; margin-top: 18px;
+    }
+    .admin-sidebar a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 24px; font-size: 0.88rem; font-weight: 500;
+      color: #5C4033; text-decoration: none; transition: all 0.2s;
+      position: relative;
+    }
+    .admin-sidebar a:hover { background: rgba(244,181,42,0.06); color: #30251C; }
+    .admin-sidebar a.active { background: rgba(244,181,42,0.1); color: #D99A14; font-weight: 600; }
+    .admin-sidebar a.active::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 3px; background: #F4B52A; }
+    .sidebar-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+    .sidebar-count { margin-left: auto; background: rgba(244,181,42,0.15); color: #D99A14; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .sidebar-bottom { margin-top: auto; padding: 20px 24px; }
+    .sidebar-back-btn {
+      display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+      background: #F5F3EF; border: 1.5px solid rgba(244,181,42,0.2);
+      border-radius: 12px; font-size: 0.82rem; font-weight: 600; color: #5C4033; text-decoration: none;
+    }
+
+    .admin-main {
+      flex: 1; margin-left: var(--admin-sidebar); padding: 32px;
+      max-width: calc(100vw - var(--admin-sidebar)); overflow-x: hidden;
+    }
+    .admin-page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .admin-page-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #30251C; }
+    .admin-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+    .admin-stat-card {
+      background: #fff; border-radius: 20px; padding: 24px;
+      border: 1px solid rgba(244,181,42,0.1); box-shadow: 0 2px 16px rgba(48,37,28,0.05);
+    }
+    .admin-stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: #30251C; line-height: 1; margin: 8px 0; }
+    .admin-card {
+      background: #fff; border-radius: 20px; border: 1px solid rgba(244,181,42,0.1);
+      box-shadow: 0 2px 16px rgba(48,37,28,0.05); overflow: hidden; margin-bottom: 24px;
+    }
+    .admin-card-header { padding: 20px 28px; border-bottom: 1px solid rgba(244,181,42,0.1); display: flex; align-items: center; justify-content: space-between; }
+    .admin-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #30251C; }
+    .admin-card-body { padding: 28px; }
+    .admin-table { width: 100%; border-collapse: collapse; }
+    .admin-table th {
+      text-align: left; padding: 14px 16px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #9E8572; background: #FEFAF4;
+      border-bottom: 1px solid rgba(244,181,42,0.15);
+    }
+    .admin-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .admin-three-col { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .admin-btn { padding: 10px 22px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; border: none; }
+    .admin-btn-primary { background: #F4B52A; color: #fff; }
+    .admin-btn-outline { background: transparent; border: 1.5px solid rgba(244,181,42,0.3); color: #D99A14; }
+
+    .trans-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(244,181,42,0.08); font-size: 0.85rem; }
+    .trans-row.header { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #9E8572; border-bottom: 1.5px solid rgba(244,181,42,0.15); }
+    @media (max-width: 992px) {
+      .admin-sidebar { display: none; }
+      .admin-main { margin-left: 0; max-width: 100%; padding: 20px; }
+      .admin-stats-grid { grid-template-columns: 1fr 1fr; }
+      .admin-two-col, .admin-three-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<header class="admin-topnav">
+  <div class="admin-topnav-left">
+    <div class="ss-monogram-small">SS</div>
+    <a href="index.html" style="text-decoration:none;" class="admin-logo">SS BREW<span>CART</span></a>
+    <span class="admin-badge">Admin Dashboard · INR (₹)</span>
+  </div>
+  <div class="admin-topnav-right">
+    <div class="admin-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9E8572" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search orders, INR..." aria-label="Search">
+    </div>
+    <button class="admin-notification-btn" title="Notifications">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <span class="notif-badge">3</span>
+    </button>
+    <div class="admin-user-pill">
+      <div class="admin-user-avatar">SS</div>
+      <span style="font-size:0.82rem; font-weight:600;">Sumit Sinha (Owner)</span>
+    </div>
+  </div>
+</header>
+
+<div class="admin-layout">
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-section-label">Management</div>
+    <a href="#" class="active"><span class="sidebar-icon">📊</span> Overview</a>
+    <a href="#"><span class="sidebar-icon">🍺</span> Beers (6)<span class="sidebar-count">₹ INR</span></a>
+    <a href="#"><span class="sidebar-icon">📋</span> Orders (5)<span class="sidebar-count">Active</span></a>
+    <a href="#"><span class="sidebar-icon">💰</span> Transactions</a>
+
+    <div class="sidebar-section-label">Store System</div>
+    <a href="#"><span class="sidebar-icon">📦</span> Stock Levels</a>
+    <a href="#"><span class="sidebar-icon">👥</span> Patrons</a>
+    <a href="#"><span class="sidebar-icon">⚙️</span> Settings</a>
+
+    <div class="sidebar-bottom">
+      <a href="index.html" class="sidebar-back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Store
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <div style="background:rgba(244,181,42,0.1); border:1px solid rgba(244,181,42,0.3); border-radius:14px; padding:14px 20px; margin-bottom:24px; font-size:0.85rem; color:#6B4700;">
+      👑 <strong>SS BREWCART Admin Console</strong> — A Premium Beer Store by Sumit Sinha. All figures, metrics, and stock valuations are strictly in Indian Rupees (INR ₹) for educational demonstration.
+    </div>
+
+    <div class="admin-page-header">
+      <div>
+        <div style="font-size:0.8rem; color:#9E8572;">SS BrewCart › Store Admin</div>
+        <div class="admin-page-title">Executive Commerce Dashboard</div>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="admin-btn admin-btn-outline" onclick="showToast('Exporting INR ledger... (Demo)', '📥')">Export (₹ INR)</button>
+        <button class="admin-btn admin-btn-primary" onclick="showToast('Add Beer Modal (Demo)', '🍺')">+ Add New Brew</button>
+      </div>
+    </div>
+
+    <!-- STATS (in ₹) -->
+    <div class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div style="font-size:0.8rem; color:#9E8572; font-weight:600;">Monthly Revenue</div>
+        <div class="admin-stat-num">₹4,85,620</div>
+        <span style="font-size:0.75rem; color:#3DAD6E; font-weight:600;">↑ +14.8% from last month</span>
+      </div>
+      <div class="admin-stat-card">
+        <div style="font-size:0.8rem; color:#9E8572; font-weight:600;">Simulated Orders</div>
+        <div class="admin-stat-num">1,248</div>
+        <span style="font-size:0.75rem; color:#3DAD6E; font-weight:600;">↑ +8.2% avg order ₹389</span>
+      </div>
+      <div class="admin-stat-card">
+        <div style="font-size:0.8rem; color:#9E8572; font-weight:600;">Reserve Inventory Value</div>
+        <div class="admin-stat-num">₹58,400</div>
+        <span style="font-size:0.75rem; color:#F4B52A; font-weight:600;">168 units in stock</span>
+      </div>
+      <div class="admin-stat-card">
+        <div style="font-size:0.8rem; color:#9E8572; font-weight:600;">Curator Rating</div>
+        <div class="admin-stat-num">4.9 ★</div>
+        <span style="font-size:0.75rem; color:#5B9BD5; font-weight:600;">By Sumit Sinha</span>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="admin-three-col">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-title">📈 Monthly Sales Trend (₹ INR in Thousands)</div>
+        </div>
+        <div class="admin-card-body">
+          <div id="admin-chart-sales"></div>
+        </div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-title">🍺 Revenue By Beer Style</div>
+        </div>
+        <div class="admin-card-body">
+          <div id="admin-chart-categories"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVENTORY TABLE (in ₹) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div class="admin-card-title">📦 Beer Catalog & Price List (INR ₹)</div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Unit Price (INR)</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body">
+            <!-- Rendered by diagrams.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS & RECENT TRANSACTIONS -->
+    <div class="admin-two-col">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-title">📋 Recent Customer Orders (₹)</div>
+        </div>
+        <div style="overflow-x:auto; padding:0 20px 20px;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Patron</th>
+                <th>Items</th>
+                <th>Total (₹)</th>
+                <th>Status</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-body">
+              <!-- Rendered by diagrams.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-title">💰 Simulated Transactions (INR)</div>
+        </div>
+        <div class="admin-card-body" style="padding-top:0;">
+          <div class="trans-row header">
+            <span>TXN ID</span>
+            <span>Customer</span>
+            <span>Amount</span>
+            <span>Method</span>
+            <span>Status</span>
+          </div>
+          <div class="trans-row">
+            <span style="font-weight:700; color:#F4B52A;">#TXN-881</span>
+            <span>Aarav Sharma</span>
+            <span style="font-weight:700;">₹598</span>
+            <span style="color:#9E8572;">UPI / GPay</span>
+            <span style="color:#3DAD6E; font-weight:600;">Success</span>
+          </div>
+          <div class="trans-row">
+            <span style="font-weight:700; color:#F4B52A;">#TXN-880</span>
+            <span>Pooja Verma</span>
+            <span style="font-weight:700;">₹1,347</span>
+            <span style="color:#9E8572;">Net Banking</span>
+            <span style="color:#3DAD6E; font-weight:600;">Success</span>
+          </div>
+          <div class="trans-row">
+            <span style="font-weight:700; color:#F4B52A;">#TXN-879</span>
+            <span>Rohan Mehta</span>
+            <span style="font-weight:700;">₹1,197</span>
+            <span style="color:#9E8572;">Credit Card</span>
+            <span style="color:#3DAD6E; font-weight:600;">Success</span>
+          </div>
+          <div class="trans-row">
+            <span style="font-weight:700; color:#F4B52A;">#TXN-878</span>
+            <span>Ananya Iyer</span>
+            <span style="font-weight:700;">₹279</span>
+            <span style="color:#9E8572;">UPI</span>
+            <span style="color:#3DAD6E; font-weight:600;">Success</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK ADD FORM IN ₹ -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div class="admin-card-title">➕ Quick Add Reserve Beer (₹ INR Demo)</div>
+      </div>
+      <div class="admin-card-body">
+        <form onsubmit="event.preventDefault(); showToast('New craft beer added to catalogue! (Demo)', '🍺'); this.reset();" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div>
+            <label style="font-size:0.78rem; font-weight:600; color:#5C4033; display:block; margin-bottom:4px;">Beer Name</label>
+            <input type="text" placeholder="e.g. Himalayan Wheat" required style="width:100%; padding:10px 14px; border:1.5px solid rgba(244,181,42,0.25); border-radius:10px; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem; font-weight:600; color:#5C4033; display:block; margin-bottom:4px;">Price in INR (₹)</label>
+            <input type="number" placeholder="e.g. 349" min="99" required style="width:100%; padding:10px 14px; border:1.5px solid rgba(244,181,42,0.25); border-radius:10px; outline:none;">
+          </div>
+          <div style="grid-column:span 2; display:flex; gap:12px;">
+            <button type="submit" class="admin-btn admin-btn-primary">Add to SS BrewCart Catalog (₹)</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function showToast(message, icon) {
+    const existing = document.querySelector('.toast');
+    if (existing) { existing.remove(); }
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<span>${icon || '✅'}</span> <span>${message}</span>`;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 2500);
+    });
+  }
+</script>
+<script src="js/diagrams.js"></script>
+</body>
+</html>

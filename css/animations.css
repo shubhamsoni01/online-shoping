@@ -1,0 +1,243 @@
+/* ============================================
+   BREWCART - animations.css
+   Premium animation effects
+   ============================================ */
+
+/* ---- REDUCED MOTION ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track { animation: none; }
+  .bottle-svg-wrap { animation: none; }
+  .bottle-ring { animation: none; }
+  .hero-blob { animation: none; }
+  .float-card { animation: none; }
+}
+
+/* ---- HERO ENTRANCE ---- */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroSlideLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes heroSlideRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes bottleEntrance {
+  from { opacity: 0; transform: scale(0.7) rotate(-15deg) translateY(50px); }
+  to   { opacity: 1; transform: scale(1) rotate(-1deg) translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Hero section entrance */
+.hero-label-enter {
+  animation: heroFadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s both;
+}
+.hero-title-enter {
+  animation: heroSlideLeft 0.9s cubic-bezier(0.4,0,0.2,1) 0.4s both;
+}
+.hero-desc-enter {
+  animation: heroFadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.6s both;
+}
+.hero-cta-enter {
+  animation: heroFadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.75s both;
+}
+.hero-stats-enter {
+  animation: heroFadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.9s both;
+}
+.bottle-enter {
+  animation: bottleEntrance 1.2s cubic-bezier(0.34,1.4,0.64,1) 0.3s both;
+}
+.rings-enter {
+  animation: fadeIn 1.5s ease 0.8s both;
+}
+.float-card-1-enter {
+  animation: heroSlideLeft 0.8s cubic-bezier(0.34,1.4,0.64,1) 1.0s both;
+}
+.float-card-2-enter {
+  animation: heroSlideRight 0.8s cubic-bezier(0.34,1.4,0.64,1) 1.2s both;
+}
+.float-card-3-enter {
+  animation: heroSlideRight 0.8s cubic-bezier(0.34,1.4,0.64,1) 1.4s both;
+}
+
+/* ---- BUBBLE ANIMATIONS ---- */
+@keyframes bubbleRise {
+  0%   { transform: translateY(0) scale(1); opacity: 0.8; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(-400px) scale(0.6); opacity: 0; }
+}
+@keyframes bubbleSway {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(12px); }
+  75%  { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+.animated-bubble {
+  position: absolute;
+  border-radius: 50%;
+  animation: bubbleRise linear infinite, bubbleSway ease-in-out infinite;
+}
+
+/* ---- PARALLAX LAYER ---- */
+.parallax-layer { will-change: transform; }
+
+/* ---- TEXT REVEAL ---- */
+.text-reveal-wrap { overflow: hidden; display: inline-block; }
+.text-reveal-inner {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: textReveal 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
+  animation-play-state: paused;
+}
+@keyframes textReveal {
+  to { transform: translateY(0); }
+}
+.in-view .text-reveal-inner { animation-play-state: running; }
+
+/* ---- STAGGER ---- */
+.stagger-wrap .stagger-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.stagger-wrap.in-view .stagger-item { opacity: 1; transform: translateY(0); }
+.stagger-wrap.in-view .stagger-item:nth-child(1) { transition-delay: 0.0s; }
+.stagger-wrap.in-view .stagger-item:nth-child(2) { transition-delay: 0.1s; }
+.stagger-wrap.in-view .stagger-item:nth-child(3) { transition-delay: 0.2s; }
+.stagger-wrap.in-view .stagger-item:nth-child(4) { transition-delay: 0.3s; }
+.stagger-wrap.in-view .stagger-item:nth-child(5) { transition-delay: 0.4s; }
+.stagger-wrap.in-view .stagger-item:nth-child(6) { transition-delay: 0.5s; }
+
+/* ---- COUNTER ANIMATION ---- */
+.counter-num { transition: none; }
+
+/* ---- SECTION WIPES ---- */
+@keyframes wipeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+.wipe-reveal { animation: wipeReveal 1s ease both; animation-play-state: paused; }
+.in-view .wipe-reveal { animation-play-state: running; }
+
+/* ---- CARD HOVER 3D ---- */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.4s ease;
+}
+.card-3d:hover { transform: perspective(1000px) rotateX(-3deg) rotateY(5deg) translateY(-8px); }
+
+/* ---- SHIMMER LOADING ---- */
+@keyframes shimmer {
+  0%   { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg,
+    rgba(244,181,42,0.0) 0%,
+    rgba(244,181,42,0.15) 50%,
+    rgba(244,181,42,0.0) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ---- SPIN ---- */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+.spin { animation: spin 1s linear infinite; }
+.spin-slow { animation: spinSlow 20s linear infinite; }
+
+/* ---- PULSE RING ---- */
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ---- FLOW DASH ANIMATION ---- */
+@keyframes flowDash {
+  0%   { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+.flow-animated-line {
+  stroke-dasharray: 8 4;
+  animation: flowDash 2s linear infinite;
+}
+
+/* ---- MORPHING BLOB ---- */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+.morph-blob {
+  animation: blobMorph 10s ease-in-out infinite;
+}
+
+/* ---- PAGE ENTER ---- */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: pageEnter 0.6s ease 0.1s both; }
+
+/* ---- WAVE ---- */
+@keyframes wave {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* ---- NUMBER COUNT UP ---- */
+@keyframes countUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+.count-animated { animation: countUp 0.4s ease both; }
+
+/* ---- ADMIN PANEL ENTER ANIMATIONS ---- */
+@keyframes adminCardIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.admin-card-enter { animation: adminCardIn 0.5s ease both; }
+.admin-card-enter:nth-child(1) { animation-delay: 0.05s; }
+.admin-card-enter:nth-child(2) { animation-delay: 0.10s; }
+.admin-card-enter:nth-child(3) { animation-delay: 0.15s; }
+.admin-card-enter:nth-child(4) { animation-delay: 0.20s; }
+
+/* ---- CHART BAR ANIMATION ---- */
+@keyframes barGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+.bar-animated {
+  transform-origin: bottom;
+  animation: barGrow 1s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* ---- NOTIFICATION BADGE BOUNCE ---- */
+@keyframes badgeBounce {
+  0%   { transform: scale(0); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+.badge-bounce { animation: badgeBounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ---- LINE DRAW ---- */
+@keyframes lineDraw {
+  to { stroke-dashoffset: 0; }
+}

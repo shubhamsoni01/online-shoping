@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SS BREWCART – A Premium Beer Store by Sumit Sinha. Discover our exceptional collection of artisanal craft brews priced in Indian Rupees (₹).">
+  <title>SS BREWCART – A Premium Beer Store by Sumit Sinha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Premium SS Monogram Logo Styles */
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .ss-monogram {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #F4B52A, #EFA34A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(244, 181, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .brand-logo-wrap:hover .ss-monogram {
+      transform: scale(1.08) rotate(-4deg);
+    }
+    .ss-monogram-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: #30251C;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+    .ss-monogram-hop {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      font-size: 0.75rem;
+      background: #FFFFFF;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-main-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #30251C;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .brand-main-title span { color: #F4B52A; }
+    .brand-curator-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9E8572;
+    }
+    .hero-curator-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,181,42,0.12);
+      border: 1px solid rgba(244,181,42,0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #D99A14;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-bottle-svg { width: 260px; height: 440px; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE TRANSITION -->
+<div class="page-transition"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="ss-monogram" style="width:64px; height:64px; border-radius:18px;">
+    <span class="ss-monogram-text" style="font-size:1.8rem;">SS</span>
+    <span class="ss-monogram-hop" style="width:24px; height:24px; font-size:1rem; top:-6px; right:-6px;">🍺</span>
+  </div>
+  <div class="loader-logo">SS BREW<span>CART</span></div>
+  <div style="font-size:0.82rem; font-weight:600; color:#9E8572; letter-spacing:0.12em; text-transform:uppercase;">
+    A Premium Beer Store by Sumit Sinha
+  </div>
+  <div class="loader-bar-wrap" style="margin-top:8px;">
+    <div class="loader-bar"></div>
+  </div>
+  <div class="loader-text">Pouring India's finest craft experience…</div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<!-- ==============================
+     NAVBAR
+     ============================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand-logo-wrap">
+      <div class="ss-monogram">
+        <span class="ss-monogram-text">SS</span>
+        <span class="ss-monogram-hop">🍺</span>
+      </div>
+      <div class="brand-titles">
+        <div class="brand-main-title">SS BREW<span>CART</span></div>
+        <div class="brand-curator-tag">By Sumit Sinha</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-nav-search" title="Search" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="btn-cart" title="Cart" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="btn-login">Sign In</button>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <div style="text-align:center; margin-bottom:12px;">
+    <div class="brand-main-title" style="font-size:1.8rem;">SS BREW<span>CART</span></div>
+    <div class="brand-curator-tag" style="font-size:0.8rem; margin-top:4px;">A Premium Beer Store by Sumit Sinha</div>
+  </div>
+  <a href="index.html">Home</a>
+  <a href="collection.html">Collection</a>
+  <a href="about.html">Our Story</a>
+  <a href="admin.html">Admin</a>
+  <a href="#" class="login-link">Sign In</a>
+</div>
+
+<!-- ==============================
+     HERO SECTION
+     ============================== -->
+<section id="hero">
+  <!-- Ambient blobs -->
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+
+  <div class="hero-inner container">
+    <!-- LEFT CONTENT -->
+    <div class="hero-left">
+      <div class="hero-curator-badge hero-label-enter">
+        <span>👑</span>
+        <span>A Premium Beer Store by Sumit Sinha</span>
+      </div>
+
+      <div class="hero-animated-label hero-label-enter" style="margin-bottom:20px;">
+        <span class="label-dot"></span>
+        <span>PREMIUM ARTISANAL BEER COLLECTION</span>
+      </div>
+
+      <h1 class="hero-title hero-title-enter">
+        <span class="line">A Little <em class="title-em">Spark.</em></span>
+        <span class="line">A Lot of</span>
+        <span class="line"><span class="title-outline">Character.</span></span>
+      </h1>
+
+      <p class="hero-desc hero-desc-enter">
+        Welcome to <strong>SS BrewCart</strong>, an exquisite showcase of fictional craft beverages curated by <strong>Sumit Sinha</strong>. Designed for those who celebrate authentic craftsmanship and refined taste.
+      </p>
+
+      <div class="hero-cta hero-cta-enter">
+        <a href="collection.html" class="btn-primary">
+          Explore Collection
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="about.html" class="btn-outline">
+          Discover Our Story
+        </a>
+      </div>
+
+      <div class="hero-stats hero-stats-enter">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="6" data-suffix=" Brews">0</div>
+          <div class="hero-stat-label">Crafted Reserve</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="249" data-suffix=" Starting">₹0</div>
+          <div class="hero-stat-label">INR Pricing</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="100" data-suffix="%">0</div>
+          <div class="hero-stat-label">Artisanal Quality</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT – BOTTLE STAGE -->
+    <div class="hero-right">
+      <div class="bottle-stage">
+        <!-- Decorative rings -->
+        <div class="bottle-ring bottle-ring-1 rings-enter"></div>
+        <div class="bottle-ring bottle-ring-2 rings-enter"></div>
+        <div class="bottle-ring bottle-ring-3 rings-enter"></div>
+
+        <!-- Glow -->
+        <div class="bottle-glow"></div>
+
+        <!-- HERO BOTTLE SVG -->
+        <div class="bottle-svg-wrap bottle-enter">
+          <svg class="hero-bottle-svg" viewBox="0 0 200 400" style="overflow:visible; filter:drop-shadow(0 30px 60px rgba(244,181,42,0.5)) drop-shadow(0 10px 30px rgba(48,37,28,0.2))">
+            <defs>
+              <linearGradient id="heroBodyGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FACA5C"/>
+                <stop offset="30%" stop-color="#F4B52A"/>
+                <stop offset="70%" stop-color="#D99A14"/>
+                <stop offset="100%" stop-color="#A06A05"/>
+              </linearGradient>
+              <linearGradient id="heroShineGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.5)"/>
+                <stop offset="30%" stop-color="rgba(255,255,255,0.15)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.0)"/>
+              </linearGradient>
+              <linearGradient id="heroLiqGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(244,181,42,0.85)"/>
+                <stop offset="100%" stop-color="rgba(160,106,5,0.95)"/>
+              </linearGradient>
+              <linearGradient id="heroLabelGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FFFAF0"/>
+                <stop offset="100%" stop-color="#FFF3D0"/>
+              </linearGradient>
+              <filter id="heroShadow">
+                <feDropShadow dx="8" dy="12" stdDeviation="10" flood-color="rgba(0,0,0,0.25)"/>
+              </filter>
+            </defs>
+
+            <!-- BOTTLE CAP -->
+            <rect x="82" y="18" width="36" height="28" rx="6" fill="#A06A05"/>
+            <rect x="78" y="22" width="44" height="8" rx="4" fill="#C08010"/>
+            <rect x="80" y="38" width="40" height="8" rx="2" fill="#A06A05"/>
+
+            <!-- NECK -->
+            <path d="M80 46 Q80 70 65 90 L65 130 L135 130 L135 90 Q120 70 120 46 Z"
+              fill="url(#heroBodyGrad)" filter="url(#heroShadow)"/>
+
+            <!-- SHOULDERS & BODY -->
+            <path d="M62 128 Q55 140 54 155 L146 155 Q145 140 138 128 Z" fill="url(#heroBodyGrad)"/>
+            <rect x="50" y="150" width="100" height="210" rx="16" fill="url(#heroBodyGrad)" filter="url(#heroShadow)"/>
+
+            <!-- LIQUID EFFECT -->
+            <rect x="53" y="175" width="94" height="175" rx="12" fill="url(#heroLiqGrad)" opacity="0.45"/>
+
+            <!-- LABEL BACKGROUND -->
+            <rect x="56" y="180" width="88" height="132" rx="10" fill="url(#heroLabelGrad)" opacity="0.96"/>
+
+            <!-- LABEL TOP ACCENTS -->
+            <rect x="62" y="188" width="76" height="3" rx="1.5" fill="#D99A14" opacity="0.6"/>
+
+            <!-- SS MONOGRAM ON BOTTLE -->
+            <circle cx="100" cy="208" r="14" fill="#F4B52A" opacity="0.25"/>
+            <text x="100" y="213" text-anchor="middle" font-family="'Playfair Display',serif" font-size="11" font-weight="900" fill="#30251C">SS</text>
+
+            <!-- LABEL TEXT -->
+            <text x="100" y="232" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="900" fill="#30251C" letter-spacing="0.5">SS BREWCART</text>
+            <text x="100" y="244" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6.5" font-weight="600" fill="#9E8572" letter-spacing="1">BY SUMIT SINHA</text>
+
+            <!-- ABV & VOLUME -->
+            <text x="100" y="268" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" font-weight="900" fill="#D99A14">₹299</text>
+            <text x="100" y="280" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#5C4033" font-weight="600">5.2% ABV · 500ml</text>
+            <text x="100" y="292" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6" fill="#9E8572" letter-spacing="1">GOLDEN BREW RESERVE</text>
+
+            <rect x="62" y="302" width="76" height="3" rx="1.5" fill="#D99A14" opacity="0.6"/>
+
+            <!-- SHINE HIGHLIGHT -->
+            <path d="M58 100 Q58 85 65 70 L65 355 Q58 355 56 345 Z" fill="url(#heroShineGrad)" rx="6" opacity="0.8"/>
+            <ellipse cx="75" cy="200" rx="6" ry="20" fill="rgba(255,255,255,0.25)"/>
+
+            <!-- BUBBLE HIGHLIGHTS -->
+            <circle cx="130" cy="230" r="5" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="136" cy="250" r="3" fill="rgba(255,255,255,0.25)"/>
+            <circle cx="128" cy="270" r="4" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+        </div>
+
+        <!-- FLOATING CARDS -->
+        <div class="float-card float-card-1 float-card-1-enter">
+          <div class="float-card-icon">👑</div>
+          <div>
+            <span>Curated by Sumit Sinha</span>
+            <span class="float-card-label">Handcrafted Reserve</span>
+          </div>
+        </div>
+
+        <div class="float-card float-card-2 float-card-2-enter">
+          <div class="float-card-icon">🇮🇳</div>
+          <div>
+            <span>Starting at ₹249</span>
+            <span class="float-card-label">All Prices in INR (₹)</span>
+          </div>
+        </div>
+
+        <div class="float-card float-card-3 float-card-3-enter">
+          <div class="float-card-icon">⭐</div>
+          <div>
+            <span>4.9 / 5 Rating</span>
+            <span class="float-card-label">Connoisseur Choice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll Down</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ==============================
+     MARQUEE STRIP
+     ============================== -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">SS BREWCART <span class="sep">✦</span></span>
+    <span class="marquee-item">By Sumit Sinha <span class="sep">✦</span></span>
+    <span class="marquee-item">Golden Brew ₹299 <span class="sep">✦</span></span>
+    <span class="marquee-item">Amber Classic ₹349 <span class="sep">✦</span></span>
+    <span class="marquee-item">Sunset Lager ₹249 <span class="sep">✦</span></span>
+    <span class="marquee-item">Royal Malt ₹499 <span class="sep">✦</span></span>
+    <span class="marquee-item">Crystal Blonde ₹279 <span class="sep">✦</span></span>
+    <span class="marquee-item">Premium Hops ₹399 <span class="sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ==============================
+     PRODUCTS SECTION
+     ============================== -->
+<section id="products" class="section">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <span class="section-label reveal">Handpicked Reserve</span>
+        <h2 class="section-title reveal delay-1">Crafted for the<br><em style="font-style:italic; color:var(--primary)">True Connoisseur</em></h2>
+      </div>
+      <div class="products-header-right">
+        <button class="filter-btn active" data-filter="All">All Brews</button>
+        <button class="filter-btn" data-filter="Lager">Lager</button>
+        <button class="filter-btn" data-filter="Ale">Ale</button>
+        <button class="filter-btn" data-filter="IPA">IPA</button>
+        <button class="filter-btn" data-filter="Stout">Stout</button>
+      </div>
+    </div>
+
+    <div class="search-wrap reveal">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search SS BrewCart beers by name or style…" aria-label="Search products">
+    </div>
+
+    <div class="products-grid stagger-wrap" id="products-grid">
+      <!-- Rendered by main.js with ₹ prices and Add to Cart -->
+    </div>
+
+    <div class="text-center mt-lg reveal">
+      <a href="collection.html" class="btn-outline" style="display:inline-flex;">
+        Explore Full Collection
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     EXPERIENCE / DIAGRAMS SECTION
+     ============================== -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="experience-header reveal">
+      <span class="section-label">The SS BrewCart Experience</span>
+      <h2 class="section-title" style="text-align:center; margin-bottom:16px;">How Everything<br><em style="font-style:italic; color:var(--primary)">Comes Together</em></h2>
+      <p class="section-subtitle" style="text-align:center; margin:0 auto;">Interactive visual flow diagrams representing our end-to-end craft beer store architecture.</p>
+    </div>
+
+    <div class="diagrams-grid">
+      <!-- Diagram 1: Navigation Flow -->
+      <div class="diagram-card reveal">
+        <div class="diagram-title">🗺️ Diagram 1: Website Navigation Flow</div>
+        <div class="diagram-sub">Home → Collection → Product Details → Demo Cart → Order Simulation → Confirmation</div>
+        <div id="diagram-nav-flow"></div>
+      </div>
+
+      <!-- Diagram 2: Shopping Flow -->
+      <div class="diagram-card reveal delay-1">
+        <div class="diagram-title">🛒 Diagram 2: Shopping Experience Flow</div>
+        <div class="diagram-sub">Browse Products → Select Product → Add to Cart → Review Cart → Demo Confirmation</div>
+        <div id="diagram-shopping-flow"></div>
+      </div>
+
+      <!-- Diagram 3: Admin Management Flow -->
+      <div class="diagram-card full reveal">
+        <div class="diagram-title">⚙️ Diagram 3: Admin Management Architecture</div>
+        <div class="diagram-sub">Admin Dashboard → Product Management → Inventory (₹ INR) → Order Records → Transaction Records</div>
+        <div id="diagram-admin-flow" style="text-align:center;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     HOW IT WORKS PROCESS
+     ============================== -->
+<section id="how-it-works" class="section-sm" style="background:var(--bg-cream); padding:80px 5%;">
+  <div class="container">
+    <div class="text-center mb-md">
+      <span class="section-label reveal" style="justify-content:center;">Seamless Journey</span>
+      <h2 class="section-title reveal delay-1" style="text-align:center;">How SS BrewCart Works</h2>
+    </div>
+    <div id="process-diagram"></div>
+  </div>
+</section>
+
+<!-- ==============================
+     BRAND STORY SECTION
+     ============================== -->
+<section id="brand-story" class="section">
+  <div class="container">
+    <div class="story-inner">
+      <div class="story-visual reveal-left">
+        <div class="story-img-main">
+          <svg viewBox="0 0 160 320" width="140" height="280" style="filter:drop-shadow(0 20px 40px rgba(0,0,0,0.2))">
+            <defs>
+              <linearGradient id="storyBotGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFF9ED"/>
+                <stop offset="100%" stop-color="#FFF3D0"/>
+              </linearGradient>
+            </defs>
+            <rect x="62" y="12" width="36" height="20" rx="4" fill="rgba(255,255,255,0.4)"/>
+            <path d="M62 32 Q62 50 54 64 L54 100 L106 100 L106 64 Q98 50 98 32Z" fill="url(#storyBotGrad)" opacity="0.95"/>
+            <rect x="46" y="98" width="68" height="200" rx="12" fill="url(#storyBotGrad)" opacity="0.95"/>
+            <rect x="52" y="130" width="56" height="96" rx="6" fill="rgba(244,181,42,0.2)"/>
+            <text x="80" y="160" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="900" fill="#30251C">SS</text>
+            <text x="80" y="176" text-anchor="middle" font-family="'Playfair Display',serif" font-size="8.5" font-weight="800" fill="#30251C">BREWCART</text>
+            <text x="80" y="190" text-anchor="middle" font-family="'Inter',sans-serif" font-size="6.5" font-weight="700" fill="#9E8572">SUMIT SINHA</text>
+          </svg>
+        </div>
+        <div class="story-img-accent">
+          <div style="text-align:center; color:rgba(255,249,237,0.95);">
+            <div style="font-size:3rem; margin-bottom:10px;">👑</div>
+            <div style="font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;">Sumit Sinha</div>
+            <div style="font-size:0.75rem; opacity:0.8; margin-top:4px;">Founder & Curator</div>
+          </div>
+        </div>
+        <div class="story-quote-block">
+          <div class="quote-mark">"</div>
+          <p>Every bottle is an ode to refined craftsmanship.</p>
+        </div>
+      </div>
+
+      <div class="story-text reveal-right">
+        <div class="story-eyebrow">The SS BrewCart Philosophy</div>
+        <h2 class="story-title">More Than a Collection.<br>It's an <em>Experience.</em></h2>
+        <p class="story-body">
+          <strong>SS BrewCart</strong> was envisioned by <strong>Sumit Sinha</strong> as a luxury sanctuary for beer lovers. We believe that exceptional beer is an artisanal craft — a balance of malt sweetness, delicate hop aromas, and pure effervescence.
+        </p>
+        <p class="story-body">
+          Every selection in our fictional reserve is designed to bring an Awwwards-worthy digital shopping experience, featuring transparent INR (₹) pricing, smooth motion design, and instant demo interactions.
+        </p>
+
+        <div class="story-features">
+          <div class="story-feature-item">
+            <div class="story-feature-icon">🏅</div>
+            <div>
+              <div class="story-feature-title">Curated by Sumit Sinha</div>
+              <div class="story-feature-desc">Each style is chosen for distinct notes, balanced bitterness, and refreshing clarity.</div>
+            </div>
+          </div>
+          <div class="story-feature-item">
+            <div class="story-feature-icon">🇮🇳</div>
+            <div>
+              <div class="story-feature-title">Indian Rupee (INR ₹) Transparency</div>
+              <div class="story-feature-desc">Realistic fictional prices starting from ₹249 up to ₹499 with complete cart breakdown.</div>
+            </div>
+          </div>
+          <div class="story-feature-item">
+            <div class="story-feature-icon">⚡</div>
+            <div>
+              <div class="story-feature-title">Instant Interactive Demo</div>
+              <div class="story-feature-desc">Interactive drawer, live quantity adjustments, and simulated order confirmation.</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="about.html" class="btn-primary">
+          Read Full Story by Sumit Sinha
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     FEATURED CAROUSEL
+     ============================== -->
+<section id="featured" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="featured-label">Curator's Showcase</div>
+      <h2 class="featured-title">Signature Picks by<br><span style="font-style:italic; opacity:0.85; color:var(--primary)">Sumit Sinha</span></h2>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track">
+        <!-- Rendered by main.js with ₹ prices -->
+      </div>
+    </div>
+
+    <div class="carousel-nav">
+      <button class="carousel-btn carousel-prev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="carousel-dots">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+      </div>
+      <button class="carousel-btn carousel-next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     STATS BAR
+     ============================== -->
+<section id="stats" class="section-sm" style="padding:80px 5%; background:var(--bg-beige);">
+  <div class="container">
+    <div class="stats-grid stagger-wrap">
+      <div class="stat-block stagger-item text-center">
+        <div class="stat-num"><span data-count="6" data-suffix=" Reserve">0</span></div>
+        <div class="stat-label">Artisanal Beers</div>
+      </div>
+      <div class="stat-block stagger-item text-center">
+        <div class="stat-num"><span data-count="249" data-suffix=" to ₹499">₹</span></div>
+        <div class="stat-label">Price Range in INR</div>
+      </div>
+      <div class="stat-block stagger-item text-center">
+        <div class="stat-num"><span data-count="4.9" data-suffix=" ★">0</span></div>
+        <div class="stat-label">Curator Rating</div>
+      </div>
+      <div class="stat-block stagger-item text-center">
+        <div class="stat-num"><span data-count="100" data-suffix="%">0</span></div>
+        <div class="stat-label">Pure Craft Story</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     TESTIMONIALS
+     ============================== -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="text-center mb-md reveal">
+      <span class="section-label" style="justify-content:center;">Connoisseur Reviews</span>
+      <h2 class="section-title" style="text-align:center;">What Patrons Say About<br><em style="font-style:italic; color:var(--primary)">SS BrewCart</em></h2>
+    </div>
+
+    <div class="testimonials-grid stagger-wrap">
+      <div class="testimonial-card stagger-item">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The Golden Brew at ₹299 is an absolute masterpiece. Sumit Sinha's curation of craft beer styles has set a completely new benchmark."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AS</div>
+          <div>
+            <div class="testimonial-name">Aarav Sharma</div>
+            <div class="testimonial-role">Craft Beer Collector</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card stagger-item">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Royal Malt (₹499) has the deepest roasted chocolate profile I've ever experienced. The presentation of SS BrewCart feels truly international."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">PV</div>
+          <div>
+            <div class="testimonial-name">Pooja Verma</div>
+            <div class="testimonial-role">Culinary Sommelier</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card stagger-item">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The entire Indian Rupee pricing and instant animated cart makes browsing SS BrewCart an absolute delight. Top-class UI and design!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RM</div>
+          <div>
+            <div class="testimonial-name">Rohan Mehta</div>
+            <div class="testimonial-role">Beverage Consultant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     NEWSLETTER
+     ============================== -->
+<section id="newsletter">
+  <div class="container">
+    <h2 class="nl-title reveal">Join the SS BrewCart Club</h2>
+    <p class="nl-desc reveal delay-1">Get exclusive invitations to virtual tastings, secret release alerts, and curated tasting notes by Sumit Sinha.</p>
+    <form class="nl-form reveal delay-2">
+      <input type="email" placeholder="Enter your email address" aria-label="Email for newsletter">
+      <button type="submit" class="btn-primary">Join Club</button>
+    </form>
+  </div>
+</section>
+
+<!-- ==============================
+     FOOTER
+     ============================== -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="brand-logo-wrap" style="margin-bottom:18px;">
+          <div class="ss-monogram">
+            <span class="ss-monogram-text">SS</span>
+            <span class="ss-monogram-hop">🍺</span>
+          </div>
+          <div class="brand-titles">
+            <div class="brand-main-title" style="color:#FFFFFF;">SS BREW<span>CART</span></div>
+            <div class="brand-curator-tag" style="color:rgba(255,249,237,0.6);">By Sumit Sinha</div>
+          </div>
+        </div>
+        <p class="footer-desc">A premium beer store by Sumit Sinha. Celebrating the intersection of artisanal brewing, modern elegance, and Indian Rupee (₹) transparency.</p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collection.html">Beer Collection</a></li>
+          <li><a href="about.html">About Sumit Sinha</a></li>
+          <li><a href="admin.html">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Reserve Brews (₹)</div>
+        <ul class="footer-links">
+          <li><a href="collection.html">Golden Brew · ₹299</a></li>
+          <li><a href="collection.html">Amber Classic · ₹349</a></li>
+          <li><a href="collection.html">Sunset Lager · ₹249</a></li>
+          <li><a href="collection.html">Royal Malt · ₹499</a></li>
+          <li><a href="collection.html">Premium Hops · ₹399</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contact & Demo</div>
+        <ul class="footer-links">
+          <li><a href="mailto:sumit.sinha@ssbrewcart.demo">sumit.sinha@ssbrewcart.demo</a></li>
+          <li><a href="#">New Delhi / Mumbai, India</a></li>
+          <li><a href="#">Academic Simulation Mode</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SS BREWCART – A Premium Beer Store by Sumit Sinha. Educational frontend prototype only.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="admin.html">Admin Panel</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- ==============================
+     CART DRAWER (Live in INR ₹)
+     ============================== -->
+<div class="cart-overlay"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div class="ss-monogram" style="width:32px; height:32px; border-radius:8px;">
+        <span class="ss-monogram-text" style="font-size:0.85rem;">SS</span>
+      </div>
+      <div class="cart-header-title">Your Cart</div>
+    </div>
+    <button class="cart-close" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items">
+    <!-- Populated dynamically by main.js -->
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Subtotal (INR)</span>
+      <span class="cart-subtotal">₹0</span>
+    </div>
+    <div class="cart-total-row">
+      <span>Estimated GST (5%)</span>
+      <span>Simulated</span>
+    </div>
+    <div class="cart-total-row grand">
+      <span>Total Amount</span>
+      <span class="cart-grand-total">₹0</span>
+    </div>
+    <button class="btn-checkout" onclick="simulateCheckout()">Complete Demo Order (₹) ✓</button>
+    <p style="text-align:center; font-size:0.72rem; color:var(--text-muted); margin-top:12px;">
+      ⚠️ Educational prototype for SS BrewCart by Sumit Sinha. No real payment is processed.
+    </p>
+  </div>
+</div>
+
+<!-- ==============================
+     PRODUCT MODAL
+     ============================== -->
+<div id="product-modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <div class="modal-img">🍺</div>
+    <div class="modal-info">
+      <div class="modal-category">Category</div>
+      <div class="modal-name">Product Name</div>
+      <div class="modal-price">₹0</div>
+      <div class="modal-desc">Description goes here.</div>
+      <div class="modal-specs"></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button class="btn-primary btn-modal-cart" style="flex:1;">
+          Add to Cart
+        </button>
+        <button onclick="document.getElementById('product-modal').classList.remove('open')" class="btn-outline" style="flex:0 0 auto;">Close</button>
+      </div>
+      <p style="font-size:0.72rem; color:var(--text-muted); margin-top:16px; text-align:center;">
+        🎓 SS BrewCart by Sumit Sinha – Educational Simulation
+      </p>
+    </div>
+    <button class="modal-close" aria-label="Close modal">✕</button>
+  </div>
+</div>
+
+<!-- ==============================
+     LOGIN MODAL
+     ============================== -->
+<div id="login-modal">
+  <div class="modal-overlay"></div>
+  <div class="login-modal-content">
+    <div class="brand-logo-wrap" style="justify-content:center; margin-bottom:12px;">
+      <div class="ss-monogram">
+        <span class="ss-monogram-text">SS</span>
+        <span class="ss-monogram-hop">🍺</span>
+      </div>
+      <div class="brand-titles" style="text-align:left;">
+        <div class="brand-main-title">SS BREW<span>CART</span></div>
+        <div class="brand-curator-tag">By Sumit Sinha</div>
+      </div>
+    </div>
+    <div class="login-subtitle">Sign in to your SS BrewCart account</div>
+    <form class="login-form">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="sumit@example.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+        Sign In (Demo)
+      </button>
+    </form>
+    <button class="login-modal-close" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/diagrams.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

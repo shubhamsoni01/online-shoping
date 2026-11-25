@@ -1,0 +1,193 @@
+/* ============================================
+   BREWCART - responsive.css
+   Fully responsive layout adjustments
+   ============================================ */
+
+/* ---- TABLET LANDSCAPE (1200px) ---- */
+@media (max-width: 1200px) {
+  .hero-title { font-size: clamp(2.4rem, 4.5vw, 4rem); }
+  .hero-inner { gap: 40px; }
+  .bottle-stage { width: 360px; height: 500px; }
+  .bottle-ring-1 { width: 400px; height: 400px; }
+  .bottle-ring-2 { width: 310px; height: 310px; }
+  .bottle-ring-3 { width: 230px; height: 230px; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { gap: 24px; }
+  .float-card-1 { left: -10px; }
+  .float-card-2 { right: -10px; }
+  .float-card-3 { right: -10px; }
+}
+
+/* ---- TABLET PORTRAIT (992px) ---- */
+@media (max-width: 992px) {
+  :root { --nav-height: 72px; }
+
+  #navbar { padding: 0 4%; }
+  .nav-links { display: none; }
+  .btn-login { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 60px 0 40px; }
+  .hero-left { order: 1; text-align: center; }
+  .hero-right { order: 2; min-height: 420px; }
+  .hero-animated-label { justify-content: center; display: inline-flex; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .float-card-1 { left: 0; top: 30px; }
+  .float-card-2 { right: 0; bottom: 40px; }
+  .float-card-3 { right: 0; top: 160px; display: none; }
+
+  .bottle-stage { width: 300px; height: 420px; }
+  .bottle-ring-1 { width: 340px; height: 340px; }
+  .bottle-ring-2 { width: 270px; height: 270px; }
+  .bottle-ring-3 { width: 200px; height: 200px; }
+
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .collection-layout { grid-template-columns: 1fr; }
+  .collection-sidebar { position: static; }
+  .collection-grid { grid-template-columns: repeat(2, 1fr); }
+  .diagrams-grid { grid-template-columns: 1fr; }
+  .diagram-card.full { grid-column: span 1; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-step::after { display: none; }
+  .story-inner { grid-template-columns: 1fr; gap: 50px; }
+  .story-visual { height: 400px; }
+  .carousel-slide { flex: 0 0 calc(50% - 14px); }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .modal-content { grid-template-columns: 1fr; }
+  .modal-img { min-height: 220px; font-size: 5rem; }
+  .timeline-item { grid-template-columns: 70px 1fr; gap: 20px; }
+  .about-hero-title { font-size: clamp(2rem, 6vw, 4rem); }
+}
+
+/* ---- MOBILE LANDSCAPE (768px) ---- */
+@media (max-width: 768px) {
+  .section { padding: 80px 5%; }
+  .section-sm { padding: 60px 5%; }
+
+  .hero-title { font-size: clamp(2.2rem, 7vw, 3rem); }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .product-img-wrap { height: 200px; }
+
+  .diagrams-grid { gap: 24px; }
+  .diagram-card { padding: 32px 24px; }
+  .flow-diagram { flex-wrap: wrap; justify-content: center; }
+  .flow-arrow { display: none; }
+  .process-steps { grid-template-columns: 1fr; gap: 32px; max-width: 320px; margin: 0 auto; }
+
+  .story-visual { height: 320px; }
+  .story-img-main { width: 75%; height: 320px; }
+  .story-img-accent { width: 48%; height: 200px; }
+  .story-quote-block { width: 160px; padding: 16px; }
+
+  .carousel-slide { flex: 0 0 calc(100% - 0px); }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-desc { max-width: 100%; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  #cart-drawer { width: 100%; max-width: 420px; }
+
+  .modal-info { padding: 28px; }
+  .modal-name { font-size: 1.4rem; }
+
+  .nl-form { flex-direction: column; align-items: stretch; }
+  .nl-form input { min-width: auto; }
+
+  .hero-animated-label { font-size: 0.65rem; }
+  .float-card { display: none; }
+  .float-card-2 { display: flex; bottom: 20px; right: 10px; }
+
+  .products-header { flex-direction: column; align-items: flex-start; }
+
+  .timeline-item { grid-template-columns: 60px 1fr; gap: 16px; }
+  .timeline-year { font-size: 1.4rem; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  #scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+}
+
+/* ---- MOBILE PORTRAIT (480px) ---- */
+@media (max-width: 480px) {
+  :root { --nav-height: 64px; }
+
+  .nav-logo { font-size: 1.3rem; }
+  .btn-nav-search { width: 36px; height: 36px; }
+  .btn-cart { width: 38px; height: 38px; }
+
+  .hero-inner { padding: 40px 0 30px; }
+  .hero-title { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+  .hero-desc { font-size: 0.95rem; }
+  .btn-primary, .btn-outline { padding: 13px 28px; font-size: 0.88rem; }
+
+  .bottle-stage { width: 260px; height: 360px; }
+  .bottle-ring-1 { width: 300px; height: 300px; }
+  .bottle-ring-2 { width: 240px; height: 240px; }
+  .bottle-ring-3 { width: 180px; height: 180px; }
+
+  .products-grid { grid-template-columns: 1fr; }
+  .collection-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-num { font-size: 1.5rem; }
+
+  .section-title { font-size: 1.7rem; }
+  .diagram-card { padding: 24px 18px; }
+
+  .stat-num { font-size: 2.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+
+  .modal-content { grid-template-columns: 1fr; border-radius: var(--radius-lg); }
+  .modal-info { padding: 20px; }
+
+  .login-modal-content { padding: 36px 24px; }
+
+  .carousel-nav { gap: 12px; }
+  .carousel-btn { width: 44px; height: 44px; }
+
+  .experience-header .section-title { font-size: 1.5rem; }
+  .flow-diagram { gap: 0; }
+  .flow-node-label { max-width: 60px; font-size: 0.65rem; }
+  .flow-node-icon { width: 48px; height: 48px; font-size: 1.2rem; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { font-size: 1.5rem; }
+
+  .toast { font-size: 0.8rem; padding: 12px 20px; white-space: normal; text-align: center; border-radius: var(--radius-lg); max-width: 90%; }
+}
+
+/* ---- VERY SMALL (360px) ---- */
+@media (max-width: 360px) {
+  .hero-title { font-size: 1.7rem; }
+  .bottle-stage { width: 220px; height: 320px; }
+  .bottle-ring-1 { width: 260px; height: 260px; }
+  .btn-primary, .btn-outline { padding: 12px 22px; font-size: 0.85rem; }
+}
+
+/* ---- HOVER only on devices that support it ---- */
+@media (hover: none) {
+  .product-actions-hover { bottom: 10px; }
+  .product-card:hover { transform: none; }
+  .card-3d:hover { transform: none; }
+}
+
+/* ---- PRINT ---- */
+@media print {
+  #navbar, #cart-drawer, #product-modal, #login-modal,
+  #scroll-top, .btn-cart, .btn-login, .hamburger,
+  .float-card, .hero-blob, .marquee-strip, #newsletter { display: none !important; }
+  body { background: white; }
+  #hero { min-height: auto; padding: 40px; }
+}
